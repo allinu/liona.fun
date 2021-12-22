@@ -1,0 +1,42 @@
+version: '3'
+services:
+  api-server:
+    image: liona/ovo
+    restart: always
+    ports:
+      - "3000:3000"
+
+  web-type:
+    image: liona/type
+    restart: always
+    ports:
+      - 8070:80
+
+  web-oao:
+    image: liona/oao
+    restart: always
+    volumes:
+      - ./oao/dist:/usr/share/nginx/html/
+    ports:
+      - 8080:80
+
+  blog-notion:
+    image: liona/notion
+    restart: always
+    ports:
+      - 8090:80
+
+  nginx_server:
+    depends_on:
+      - api-server
+      - web-type
+      - web-oao
+      - blog-notion
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./nginx/:/etc/nginx/
+      - ./log/nginx:/var/log/nginx
+    ports:
+      - 80:80
+      - 443:443
