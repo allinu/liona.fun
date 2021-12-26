@@ -17,8 +17,10 @@ services:
   web-oao:
     image: liona/oao
     restart: always
+    volumes:
+      - ./oao/dist/:/usr/share/nginx/html/
     ports:
-      - 8080:3000
+      - 8080:80
 
   blog-notion:
     image: liona/notion
