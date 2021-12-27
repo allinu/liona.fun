@@ -49,4 +49,5 @@ services:
     image: liona/cea
     restart: always
     volumes:
-      - ./config:/cea/conf/
+      - ./config:/cea/conf
+      - ./tmp/config:/tmp/conf
