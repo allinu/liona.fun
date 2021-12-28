@@ -5,6 +5,7 @@ services:
     restart: always
     volumes:
       - ./config:/app/config
+      - ./db:/app/db
     ports:
       - "3000:3000"
 
@@ -49,5 +50,4 @@ services:
     image: liona/cea
     restart: always
     volumes:
-      - ./config:/cea/conf
-      - ./tmp/config:/tmp/conf
+      - ./config:/app/conf
